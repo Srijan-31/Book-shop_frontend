@@ -17,7 +17,7 @@ export default function Product(){
         setIsAdded(true)
 
     }
-    console.log(books)
+    
 
     return(
         <main className="p-5">

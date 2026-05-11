@@ -43,11 +43,11 @@ export function BookProvider({children}){
         const category= filterCategory.length===0 || filterCategory.includes(book?.categoryId)
         const rating= book?.rating>=filterRating
         // console.log(book?.rating)
-        // console.log(rating)
+        console.log(rating)
 
         return category && rating
     })
-    // console.log(filterBooks)
+    console.log(filterRating)
 
 
     const addToCart=(item)=>{
