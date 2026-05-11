@@ -17,13 +17,14 @@ export default function Product(){
         setIsAdded(true)
 
     }
-
+    console.log(books)
 
     return(
         <main className="p-5">
             <div className="row">
                 <div className="col-md-3 p-4">
                     <Filter/>
+                    
                 </div>
                 <div className="col-md-9 bg-light p-4">
                     <h4>Showing All Products (showing {books?.length} products)</h4>

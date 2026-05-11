@@ -4,6 +4,7 @@ import useBookContext from "../context/bookContext";
 export default function Filter(){
 
     const{categories,filterCategory,handleCategoryFilter, handleRatingFilter, filterRating}=useBookContext()
+    // console.log(filterRating)
 
     return(
         <>
@@ -28,29 +29,51 @@ export default function Filter(){
                 <br/>
                 <p className="fs-3 fw-bold">Rating</p>
                     <div className="form-check">
-                        <input type="radio" className="form-check-input" style={{transform: "scale(1.5)"}} value={4} name="rating"
-                        checked={filterRating===4} 
-                        onChange={(e)=>handleRatingFilter(Number(e.target.value))} />
-                        <label className="form-check-label fs-3">4 Stars & above</label>
+                        <input
+                            type="radio"
+                            value={4}
+                            className="form-check-input"
+                            style={{transform:"scale(1.5)"}}
+                            name="rating"
+                            onChange={(e)=>handleRatingFilter(Number(e.target.value))}
+                        />
+                        <label className="form-check-label fs-3">4 stars & above</label>
                     </div>
                     <div className="form-check">
-                        <input type="radio" className="form-check-input" style={{transform: "scale(1.5)"}} value={3} name="rating"
-                        checked={filterRating===3}
-                        onChange={(e)=>handleRatingFilter(Number(e.target.value))} />
-                        <label className="form-check-label fs-3">3 Stars & above</label>
-                    </div>
-                    <div className="form-check">                    
-                        <input type="radio" className="form-check-input" style={{transform: "scale(1.5)"}} value={2} name="rating"
-                        checked={filterRating===2}
-                        onChange={(e)=>handleRatingFilter(Number(e.target.value))} />
-                        <label className="form-check-label fs-3">2 Stars & above</label>
+                        <input
+                            type="radio"
+                            value={3}
+                            className="form-check-input"
+                            style={{transform:"scale(1.5)"}}
+                            name="rating"
+                            onChange={(e)=>handleRatingFilter(Number(e.target.value))}
+                        />
+                        <label className="form-check-label fs-3">3 stars & above</label>
                     </div>
                     <div className="form-check">
-                        <input type="radio" className="form-check-input" style={{transform: "scale(1.5)"}} value={1} name="rating"
-                        checked={filterRating===1}
-                        onChange={(e)=>handleRatingFilter(Number(e.target.value))} />
-                        <label className="form-check-label fs-3">1 Stars & above</label>
+                        <input
+                            type="radio"
+                            value={2}
+                            className="form-check-input"
+                            style={{transform:"scale(1.5)"}}
+                            name="rating"
+                            onChange={(e)=>handleRatingFilter(Number(e.target.value))}
+                        />
+                        <label className="form-check-label fs-3">2 stars & above</label>
                     </div>
+                    <div className="form-check">
+                        <input
+                            type="radio"
+                            value={1}
+                            className="form-check-input"
+                            style={{transform:"scale(1.5)"}}
+                            name="rating"
+                            onChange={(e)=>handleRatingFilter(Number(e.target.value))}
+                        />
+                        <label className="form-check-label fs-3">1 star & above</label>
+                    </div>
+                
+                
         </>
     )
 }

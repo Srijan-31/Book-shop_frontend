@@ -19,6 +19,7 @@ export function BookProvider({children}){
         loading: booksLoading,
         error: booksError
     } =useFetch("https://book-shop-backend-iota.vercel.app/books")
+    console.log(books)
     const{
         data: categories,
         loading: categoryLoading,
@@ -29,19 +30,24 @@ export function BookProvider({children}){
     const handleCategoryFilter=(categoryId)=>{
         setFilterCategory(prev=>prev.includes(categoryId)?prev.filter(id=>id!==categoryId):[...prev,categoryId])
     }
-    
     const handleRatingFilter=(rating)=>{
         setRatingFilter(rating)
     }
+    
+    
+    // const filterBooks=filterCategory.length===0
+    // ? books
+    // : books?.filter(book=>filterCategory.includes(book.categoryId))
+
     const filterBooks=books?.filter(book=>{
-        const category=filterCategory.length===0 || filterCategory.includes(book?.categoryId)
-        const rating=book?.rating>=filterRating
+        const category= filterCategory.length===0 || filterCategory.includes(book?.categoryId)
+        const rating= book?.rating>=filterRating
+        // console.log(book?.rating)
+        // console.log(rating)
 
         return category && rating
-    }
-    )
-
-
+    })
+    // console.log(filterBooks)
 
 
     const addToCart=(item)=>{
