@@ -3,7 +3,7 @@ import useBookContext from "../context/bookContext";
 
 export default function Filter(){
 
-    const{categories,filterCategory,handleCategoryFilter, handleRatingFilter, filterRating}=useBookContext()
+    const{categories,books, filterCategory,handleCategoryFilter, handleRatingFilter, filterRating, handlePriceSorting}=useBookContext()
     // console.log(filterRating)
 
     return(
@@ -72,8 +72,16 @@ export default function Filter(){
                         />
                         <label className="form-check-label fs-3">1 star & above</label>
                     </div>
-                
-                
+                    <br/>
+                <p className="fs-3 fw-bold">Sort by</p>
+                <div className="form-check">
+                    <input type="radio" className="form-check-input" name="price" value="LowToHigh" style={{transform:"scale(1.5)"}} onChange={(e)=>handlePriceSorting(e.target.value)} />
+                    <label className="form-check-label fs-3">Price- Low to High</label>
+                </div>
+                <div className="form-check">
+                    <input type="radio" className="form-check-input" name="price" value="HighToLow" style={{transform:"scale(1.5)"}} onChange={(e)=>handlePriceSorting(e.target.value)} />
+                    <label className="form-check-label fs-3">Price- high to low</label>
+                </div>
         </>
     )
 }

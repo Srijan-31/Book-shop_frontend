@@ -14,7 +14,9 @@ export default function Home(){
                 {categories?.map(category=>(
                         <div className='col-md-2  px-3'>
                             <div className='position-relative overflow-hidden'>
-                                <img src="https://www.priceselfstorage.com/blog/wp-content/uploads/2018/04/heart-bookshelf.jpg" style={{width:"170px", height:"150px"}} className='img-fluid' />
+                                <Link to={`/category/${category?._id}`}>
+                                    <img src="https://www.priceselfstorage.com/blog/wp-content/uploads/2018/04/heart-bookshelf.jpg" style={{width:"170px", height:"150px"}} className='img-fluid' />
+                                </Link>
                                 <div className='position-absolute start-0 top-50 w-100 text-center  bg-white' key={category._id}>
                                     <span>{category?.name}</span>
                                 </div>

@@ -12,6 +12,7 @@ export function BookProvider({children}){
     const[cart,setCart]=useState([])
     const[filterCategory, setFilterCategory]=useState([])
     const[filterRating,setRatingFilter]=useState(0)
+    const[priceSort, setPriceSort]=useState("")
 
     
     const {
@@ -19,7 +20,7 @@ export function BookProvider({children}){
         loading: booksLoading,
         error: booksError
     } =useFetch("https://book-shop-backend-iota.vercel.app/books")
-    console.log(books)
+    
     const{
         data: categories,
         loading: categoryLoading,
@@ -33,29 +34,34 @@ export function BookProvider({children}){
     const handleRatingFilter=(rating)=>{
         setRatingFilter(rating)
     }
+    const handlePriceSorting=(price)=>{
+        setPriceSort(price)
+    }
     
-    
-    // const filterBooks=filterCategory.length===0
-    // ? books
-    // : books?.filter(book=>filterCategory.includes(book.categoryId))
-
     const filterBooks=books?.filter(book=>{
         const category= filterCategory.length===0 || filterCategory.includes(book?.categoryId)
         const rating= book?.rating>=filterRating
-        // console.log(book?.rating)
-        console.log(rating)
+        
 
         return category && rating
-    })
-    console.log(filterRating)
+    })?.sort((a,b)=>{
+        if(priceSort==="LowToHigh"){
+            return a.price-b.price
+        }
 
+        if(priceSort==="HighToLow"){
+            return b.price-a.price
+        }
+        return 0
+    })
+    
 
     const addToCart=(item)=>{
         setCart((prevCart)=>[...prevCart,item])
     }
 
     return(
-    <bookContext.Provider value={{books: filterBooks, categories, loading: booksLoading || categoryLoading, error: booksError||categoryError, addToCart, filterCategory, handleCategoryFilter, handleRatingFilter, filterRating}}>
+    <bookContext.Provider value={{books: filterBooks, categories, loading: booksLoading || categoryLoading, error: booksError||categoryError, addToCart, filterCategory, handleCategoryFilter, handleRatingFilter, handlePriceSorting , filterRating}}>
         {children}
     </bookContext.Provider>
     )
