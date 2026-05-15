@@ -30,7 +30,7 @@ export default function Home(){
                 <div className='row'>
                     <div className='col-md-12 text-center'>
                         <Link to="/products"><img 
-                        src="https://static.vecteezy.com/system/resources/thumbnails/044/280/984/small/stack-of-books-on-a-brown-background-concept-for-world-book-day-photo.jpg" alt="Book wallpaper" /></Link>
+                        src="https://static.vecteezy.com/system/resources/thumbnails/044/280/984/small/stack-of-books-on-a-brown-background-concept-for-world-book-day-photo.jpg" alt="Book wallpaper" style={{width:"100%"}} /></Link>
                     </div>
                 </div>
             </div>

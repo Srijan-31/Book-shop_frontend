@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import Product from './pages/Products'
 import Cart from './pages/Cart'
 import CategoryDetails from './pages/CategoryDetails'
+import ProductDetails from './pages/ProductDetails'
 import { BookProvider } from './context/bookContext'
 
 export default function App(){
@@ -17,6 +18,7 @@ export default function App(){
                     <Route path="/products" element={<Product/>}></Route>
                     <Route path="/cart" element={<Cart/>}></Route>
                     <Route path="/category/:category_Id" element={<CategoryDetails/>} />
+                    <Route path="/products/:productId" element={<ProductDetails/>} ></Route>
                 </Routes>
             </Router>
         </BookProvider>

@@ -18,7 +18,7 @@ export default function CategoryDetails(){
     }
 
     const {category_Id}=useParams()
-    console.log(category_Id)
+    // console.log(category_Id)
 
     const filteredCategories=books?.filter(book=>book?.categoryId==category_Id)
     console.log(filteredCategories)

@@ -17,6 +17,7 @@ export default function Product(){
         setIsAdded(true)
 
     }
+
     
 
     return(
@@ -32,7 +33,10 @@ export default function Product(){
                         {books?.map(book=>(
                             <div className="col-md-4 my-3">
                                 <div className="card h-100">
-                                    <img src={book?.image} className="card-img-top img-fluid" style={{width:"100%",height:"350px",  objectFit:"contain",objectPosition: "center" }} />
+                                    
+                                    <Link to={`/products/${book?._id}`} >
+                                        <img src={book?.image} className="card-img-top img-fluid" style={{width:"100%",height:"350px",  objectFit:"contain",objectPosition: "center" }} />
+                                    </Link>
                                         <div className="card-body d-flex flex-column">
                                             <p className="card-text fs-2 fw-bold">{book?.title}</p>
                                             <p className="card-text text-end fs-4">-{book?.author}</p>
