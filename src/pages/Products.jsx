@@ -1,6 +1,7 @@
 import useBookContext from "../context/bookContext";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Nav from "../components/Nav";
 import Filter from "../components/Filter";
 
 export default function Product(){
@@ -21,6 +22,8 @@ export default function Product(){
     
 
     return(
+        <>
+        <Nav/>
         <main className="p-5">
             <div className="row">
                 <div className="col-md-3 p-4">
@@ -50,5 +53,6 @@ export default function Product(){
                 </div>
             </div>
         </main>
+        </>
     )
 }

@@ -13,6 +13,7 @@ export function BookProvider({children}){
     const[filterCategory, setFilterCategory]=useState([])
     const[filterRating,setRatingFilter]=useState(0)
     const[priceSort, setPriceSort]=useState("")
+    const[search, setSearch]=useState("")
 
     
     const {
@@ -37,13 +38,17 @@ export function BookProvider({children}){
     const handlePriceSorting=(price)=>{
         setPriceSort(price)
     }
+    const handleSearchBar=(value)=>{
+        setSearch(value)
+    }
     
     const filterBooks=books?.filter(book=>{
         const category= filterCategory.length===0 || filterCategory.includes(book?.categoryId)
         const rating= book?.rating>=filterRating
-        
+        const searchBar=search==="" || 
+        book?.title.toLowerCase().includes(search.toLowerCase())
 
-        return category && rating
+        return category && rating && searchBar
     })?.sort((a,b)=>{
         if(priceSort==="LowToHigh"){
             return a.price-b.price
@@ -61,7 +66,7 @@ export function BookProvider({children}){
     }
 
     return(
-    <bookContext.Provider value={{books: filterBooks, categories, loading: booksLoading || categoryLoading, error: booksError||categoryError, addToCart, filterCategory, handleCategoryFilter, handleRatingFilter, handlePriceSorting , filterRating}}>
+    <bookContext.Provider value={{books: filterBooks, categories, loading: booksLoading || categoryLoading, error: booksError||categoryError, addToCart, filterCategory, handleCategoryFilter, handleRatingFilter, handlePriceSorting , handleSearchBar ,search, filterRating}}>
         {children}
     </bookContext.Provider>
     )

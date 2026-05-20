@@ -3,6 +3,7 @@ import { useState } from "react";
 import {Link} from 'react-router-dom'
 import Filter from "../components/Filter";
 import { useParams } from "react-router-dom";
+import Nav from "../components/Nav";
 
 export default function CategoryDetails(){
     const {books, loading, error, addToCart}=useBookContext()
@@ -24,6 +25,8 @@ export default function CategoryDetails(){
     console.log(filteredCategories)
 
     return(
+        <>
+        <Nav/>
             <main className="p-5">
                 <div className="row">
                     <div className="col-md-3 p-4">
@@ -51,6 +54,7 @@ export default function CategoryDetails(){
                     </div>
                 </div>
             </main>
+        </>
         )
     
 }

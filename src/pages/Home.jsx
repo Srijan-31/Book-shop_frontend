@@ -1,5 +1,6 @@
 import useBookContext from '../context/bookContext'
 import {Link} from 'react-router-dom'
+import Nav from '../components/Nav'
 export default function Home(){
 
     const {categories, loading, error}=useBookContext()
@@ -8,6 +9,8 @@ export default function Home(){
     if(loading) return <p>Loading...</p>
     if(error) return <p>An error occured.</p>
     return(
+        <>
+        <Nav/>
         <main className='container'>
             <div className='py-4'>
                 <div className='row'>
@@ -35,5 +38,6 @@ export default function Home(){
                 </div>
             </div>
         </main>
+        </>
     )
 }

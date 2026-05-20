@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import useBookContext from "../context/bookContext";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Nav from "../components/Nav";
 export default function ProductDetails(){
 
     const{books,categories, loading, error, addToCart}=useBookContext()
@@ -22,6 +23,8 @@ export default function ProductDetails(){
     }
 
     return (
+        <>
+        <Nav/>
         <main className="bg-light">
             <div className="bg-white container py-3">
                 <div className="row">
@@ -58,6 +61,7 @@ export default function ProductDetails(){
                 </div>
             </div>
         </main>
+        </>
     )
 
 }
