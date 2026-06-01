@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import Nav from "../components/Nav";
 
 export default function CategoryDetails(){
-    const {books, loading, error, addToCart}=useBookContext()
+    const {books,cart, loading, error, addToCart}=useBookContext()
     const[isAdded,setIsAdded]=useState(false)
 
     if(loading) return <p>Loading...</p>
@@ -45,7 +45,15 @@ export default function CategoryDetails(){
                                                 <p className="card-text fs-2 fw-bold">{book?.title}</p>
                                                 <p className="card-text text-end fs-4">-{book?.author}</p>
                                                 <p className="card-text text-center fs-1 fw-bolder">₹{book?.price}</p>
-                                                {isAdded?<Link to="/cart" className="btn btn-secondary">Go to cart</Link>:<button className="btn btn-primary" onClick={()=>handleClick(book)}>Add to cart</button>}
+                                                {cart.some(item=>item._id===book._id)
+                                                    ?(
+                                                    <Link to="/cart" className="btn btn-secondary">
+                                                        Go to cart
+                                                    </Link>
+                                                    ):(
+                                                        <button className="btn btn-primary" onClick={()=>handleClick(book)}>Add to Cart</button>
+                                                    )
+                                                }
                                             </div>
                                     </div>
                                 </div>

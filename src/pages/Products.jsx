@@ -6,18 +6,19 @@ import Filter from "../components/Filter";
 
 export default function Product(){
     
-    const {books,categories, loading, error, addToCart }=useBookContext()
+    const {books,categories,cart, loading, error, addToCart }=useBookContext()
     // console.log(books)
-    const[isAdded,setIsAdded]=useState(false)
+    // const[isAdded,setIsAdded]=useState(false)
 
     if(loading) return <p>Loading...</p>
     if(error) return <p>An error occured.</p>
 
     const handleClick=(item)=>{
         addToCart(item)
-        setIsAdded(true)
+        
 
     }
+    console.log(cart)
 
     
 
@@ -44,7 +45,16 @@ export default function Product(){
                                             <p className="card-text fs-2 fw-bold">{book?.title}</p>
                                             <p className="card-text text-end fs-4">-{book?.author}</p>
                                             <p className="card-text text-center fs-1 fw-bolder">₹{book?.price}</p>
-                                            {isAdded?<Link to="/cart" className="btn btn-secondary">Go to cart</Link>:<button className="btn btn-primary" onClick={()=>handleClick(book)}>Add to cart</button>}
+                                            {/* {isAdded?<Link to="/cart" className="btn btn-secondary">Go to cart</Link>:<button className="btn btn-primary" onClick={()=>handleClick(book)}>Add to cart</button>} */}
+                                            {cart.some(item=>item._id===book._id)
+                                            ?(
+                                                <Link to="/cart" className="btn btn-secondary">
+                                                    Go to cart
+                                                </Link>
+                                            ):(
+                                                <button className="btn btn-primary" onClick={()=>handleClick(book)}>Add to Cart</button>
+                                            )
+                                            }
                                         </div>
                                 </div>
                             </div>

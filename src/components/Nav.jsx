@@ -11,7 +11,7 @@ export default function Nav(){
             <h3 className="fw-bold text-body-secondary">MyShoppingSite</h3>
 
             <input type="text" value={search} onChange={(e)=>handleSearchBar(e.target.value)} className="form-control w-50" />
-            <NavLink to="/carts" className="fs-3 text-dark"><BsCartPlus/></NavLink>
+            <NavLink to="/cart" className="fs-3 text-dark"><BsCartPlus/></NavLink>
         </nav>
     )
 }

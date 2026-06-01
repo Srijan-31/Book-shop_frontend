@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Nav from "../components/Nav";
 export default function ProductDetails(){
 
-    const{books,categories, loading, error, addToCart}=useBookContext()
+    const{books,cart, categories, loading, error, addToCart}=useBookContext()
     if(loading) return <p>Loading...</p>
     if(error) return <p>An error occured</p>
 
@@ -31,7 +31,15 @@ export default function ProductDetails(){
                     <div className="col-md-3">
                         <img src={product?.image} className="img-fluid py-3" />
                         <button className="btn btn-primary" style={{width:"100%"}}>Buy Now</button>
-                        {isAdded?<Link to="/cart" className="btn btn-secondary mt-2" style={{width:"100%"}}>Go to Cart</Link>:<button className="btn btn-secondary mt-2" style={{width:"100%"}} onClick={()=>handleButtonClick(product)}>Add to cart</button>}
+                        {cart.some(item=>item._id===productId)
+                            ?(
+                            <Link to="/cart" className="btn btn-secondary mt-3" style={{width:"100%"}}>
+                                Go to cart
+                            </Link>
+                            ):(
+                                <button className="btn btn-primary mt-3" onClick={()=>handleClick(book)} style={{width:"100%"}}>Add to Cart</button>
+                            )
+                        }
                     </div>
                     <div className="col-md-9 py-3">
                         <p className="fs-2">{product?.title}</p>

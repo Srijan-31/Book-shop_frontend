@@ -1,4 +1,4 @@
-import {createContext, useContext, useState} from 'react'
+import {createContext, useContext, useEffect, useState} from 'react'
 import useFetch from '../useFetch'
 
 const bookContext=createContext()
@@ -9,7 +9,10 @@ export  default useBookContext
 
 
 export function BookProvider({children}){
-    const[cart,setCart]=useState([])
+    const[cart,setCart]=useState(()=>{
+        const savedCart=localStorage.getItem("cart")
+        return savedCart?JSON.parse(savedCart):[]
+    })
     const[filterCategory, setFilterCategory]=useState([])
     const[filterRating,setRatingFilter]=useState(0)
     const[priceSort, setPriceSort]=useState("")
@@ -28,6 +31,9 @@ export function BookProvider({children}){
         error: categoryError
     }= useFetch("https://book-shop-backend-iota.vercel.app/categories")
 
+    useEffect(()=>{
+        localStorage.setItem("cart",JSON.stringify(cart))
+    },[cart])
     
     const handleCategoryFilter=(categoryId)=>{
         setFilterCategory(prev=>prev.includes(categoryId)?prev.filter(id=>id!==categoryId):[...prev,categoryId])
@@ -66,7 +72,7 @@ export function BookProvider({children}){
     }
 
     return(
-    <bookContext.Provider value={{books: filterBooks, categories, loading: booksLoading || categoryLoading, error: booksError||categoryError, addToCart, filterCategory, handleCategoryFilter, handleRatingFilter, handlePriceSorting , handleSearchBar ,search, filterRating}}>
+    <bookContext.Provider value={{books: filterBooks, categories, loading: booksLoading || categoryLoading, error: booksError||categoryError, addToCart, filterCategory, handleCategoryFilter, handleRatingFilter, handlePriceSorting , handleSearchBar ,search,cart,setCart, filterRating}}>
         {children}
     </bookContext.Provider>
     )
