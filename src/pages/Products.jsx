@@ -3,10 +3,11 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Nav from "../components/Nav";
 import Filter from "../components/Filter";
+import { FcLike } from "react-icons/fc";
 
 export default function Product(){
     
-    const {books,categories,cart, loading, error, addToCart }=useBookContext()
+    const {books,categories,cart,wishlist, loading, error, addToCart }=useBookContext()
     // console.log(books)
     // const[isAdded,setIsAdded]=useState(false)
 
@@ -18,7 +19,7 @@ export default function Product(){
         
 
     }
-    console.log(cart)
+    //console.log(cart)
 
     
 
@@ -37,6 +38,15 @@ export default function Product(){
                         {books?.map(book=>(
                             <div className="col-md-4 my-3">
                                 <div className="card h-100">
+                                    <div className="position-relative">
+                                        <button className="position-absolute top-0 end-0 m-2 border-0 bg-transparent">
+                                            <FcLike size={30}
+                                                color={
+                                                    wishlist.some(item=>item._id===book._id)?"red":"grey"
+                                                }
+                                            />
+                                        </button>
+                                    </div>
                                     
                                     <Link to={`/products/${book?._id}`} >
                                         <img src={book?.image} className="card-img-top img-fluid" style={{width:"100%",height:"350px",  objectFit:"contain",objectPosition: "center" }} />

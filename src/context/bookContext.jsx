@@ -1,6 +1,7 @@
 import {createContext, useContext, useEffect, useState} from 'react'
 import useFetch from '../useFetch'
 
+
 const bookContext=createContext()
 
 const useBookContext=()=>useContext(bookContext)
@@ -13,6 +14,19 @@ export function BookProvider({children}){
         const savedCart=localStorage.getItem("cart")
         return savedCart?JSON.parse(savedCart):[]
     })
+    useEffect(()=>{
+        localStorage.setItem("cart",JSON.stringify(cart))
+    },[cart])
+
+    const[wishlist, setWishlist]=useState(()=>{
+        const savedWishlist=localStorage.getItem("wishlist")
+        return savedWishlist?JSON.parse(savedWishlist):[]
+    })
+
+    useEffect(()=>{
+        localStorage.setItem("wishlist",JSON.stringify(wishlist))
+    },[wishlist])
+
     const[filterCategory, setFilterCategory]=useState([])
     const[filterRating,setRatingFilter]=useState(0)
     const[priceSort, setPriceSort]=useState("")
@@ -31,9 +45,7 @@ export function BookProvider({children}){
         error: categoryError
     }= useFetch("https://book-shop-backend-iota.vercel.app/categories")
 
-    useEffect(()=>{
-        localStorage.setItem("cart",JSON.stringify(cart))
-    },[cart])
+    
     
     const handleCategoryFilter=(categoryId)=>{
         setFilterCategory(prev=>prev.includes(categoryId)?prev.filter(id=>id!==categoryId):[...prev,categoryId])
@@ -72,7 +84,7 @@ export function BookProvider({children}){
     }
 
     return(
-    <bookContext.Provider value={{books: filterBooks, categories, loading: booksLoading || categoryLoading, error: booksError||categoryError, addToCart, filterCategory, handleCategoryFilter, handleRatingFilter, handlePriceSorting , handleSearchBar ,search,cart,setCart, filterRating}}>
+    <bookContext.Provider value={{books: filterBooks, categories, loading: booksLoading || categoryLoading, error: booksError||categoryError, addToCart, filterCategory, handleCategoryFilter, handleRatingFilter, handlePriceSorting , handleSearchBar ,search,cart,setCart,wishlist, filterRating}}>
         {children}
     </bookContext.Provider>
     )

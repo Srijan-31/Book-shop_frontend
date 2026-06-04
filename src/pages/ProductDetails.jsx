@@ -15,11 +15,11 @@ export default function ProductDetails(){
     const otherProducts=books?.filter(book=>book?.categoryId===product?.categoryId && book?.title!==product?.title)
     // console.log(otherProducts)
     const category=categories?.find(category=>category?._id===product?.categoryId)
-    const[isAdded, setIsAdded]=useState(false)
+    // const[isAdded, setIsAdded]=useState(false)
     // console.log(category)
-    const handleButtonClick=(product)=>{
+    const handleClick=(product)=>{
         addToCart(product)
-        setIsAdded(true)
+        
     }
 
     return (
@@ -37,7 +37,7 @@ export default function ProductDetails(){
                                 Go to cart
                             </Link>
                             ):(
-                                <button className="btn btn-primary mt-3" onClick={()=>handleClick(book)} style={{width:"100%"}}>Add to Cart</button>
+                                <button className="btn btn-primary mt-3" onClick={()=>handleClick(product)} style={{width:"100%"}}>Add to Cart</button>
                             )
                         }
                     </div>
