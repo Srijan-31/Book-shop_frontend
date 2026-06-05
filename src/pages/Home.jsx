@@ -18,7 +18,7 @@ export default function Home(){
                         <div className='col-md-2  px-3'>
                             <div className='position-relative overflow-hidden'>
                                 <Link to={`/category/${category?._id}`}>
-                                    <img src="https://www.priceselfstorage.com/blog/wp-content/uploads/2018/04/heart-bookshelf.jpg" style={{width:"170px", height:"150px"}} className='img-fluid' />
+                                    <img src="https://www.wallpapergap.com/wp-content/uploads/2024/10/book-stack-wallpapers.jpg" style={{width:"170px", height:"150px"}} className='img-fluid' />
                                 </Link>
                                 <div className='position-absolute start-0 top-50 w-100 text-center  bg-white' key={category._id}>
                                     <span>{category?.name}</span>
@@ -31,9 +31,9 @@ export default function Home(){
 
             <div>
                 <div className='row'>
-                    <div className='col-md-12 text-center'>
+                    <div className='col-md-12 text-center mt-4'>
                         <Link to="/products"><img 
-                        src="https://static.vecteezy.com/system/resources/thumbnails/044/280/984/small/stack-of-books-on-a-brown-background-concept-for-world-book-day-photo.jpg" alt="Book wallpaper" style={{width:"100%"}} /></Link>
+                        src="https://c1.wallpaperflare.com/preview/127/366/443/library-book-bookshelf-read.jpg" alt="Book wallpaper" style={{width:"100%"}} /></Link>
                     </div>
                 </div>
             </div>
