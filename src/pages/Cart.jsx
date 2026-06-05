@@ -37,16 +37,19 @@ export default function Cart(){
                         </div>
                     </div>
                 ))}
-                <button
-                onClick={() => {
-                localStorage.removeItem("cart")
-                window.location.reload()
-                
-                }}
-                className="btn btn-primary"
-                >
-                    Clear Cart
-                </button>
+                {cart.length===0?
+                    <p className="fs-4 text-center">The Cart is Empty</p>:
+                    <button
+                    onClick={() => {
+                    localStorage.removeItem("cart")
+                    window.location.reload()
+                    
+                    }}
+                    className="btn btn-primary"
+                    >
+                        Clear Cart
+                    </button>
+                }
                     
                 
              </div>

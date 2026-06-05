@@ -30,16 +30,19 @@ export default function Wishlist(){
                         </div>
                     ))}
                 </div>
-                <button
-                onClick={() => {
-                localStorage.removeItem("wishlist")
-                window.location.reload()
+                {wishlist.length===0? <p className="fs-4 text-center">No item in Wishlist</p>:
+                    <button
+                    onClick={() => {
+                    localStorage.removeItem("wishlist")
+                    window.location.reload()
+                    
+                    }}
+                    className="btn btn-primary w-100"
+                    >
+                        Clear Wishlist
+                    </button>
+                }
                 
-                }}
-                className="btn btn-primary w-100"
-                >
-                    Clear Wishlist
-                </button>
             </main>
         </>
     )
