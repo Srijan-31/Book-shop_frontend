@@ -82,9 +82,17 @@ export function BookProvider({children}){
     const addToCart=(item)=>{
         setCart((prevCart)=>[...prevCart,item])
     }
+    const addToWishList=(item)=>{
+        setWishlist((prevList)=>[...prevList,item])
+    }
+    const removeLikedItem=(item)=>{
+        setWishlist(wishlist.filter(book=>(
+            book._id!==item._id
+        )))
+    }
 
     return(
-    <bookContext.Provider value={{books: filterBooks, categories, loading: booksLoading || categoryLoading, error: booksError||categoryError, addToCart, filterCategory, handleCategoryFilter, handleRatingFilter, handlePriceSorting , handleSearchBar ,search,cart,setCart,wishlist, filterRating}}>
+    <bookContext.Provider value={{books: filterBooks, categories, loading: booksLoading || categoryLoading, error: booksError||categoryError, addToCart,addToWishList, filterCategory, handleCategoryFilter, handleRatingFilter, handlePriceSorting , handleSearchBar ,search,cart,setCart,wishlist, removeLikedItem, filterRating}}>
         {children}
     </bookContext.Provider>
     )

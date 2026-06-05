@@ -31,7 +31,7 @@ export default function Cart(){
                                 <p className="card-text fs-2 fw-bold">{book?.title}</p>
                                 <p className="card-text text-end fs-4">-{book?.author}</p>
                                 <p className="card-text text-center fs-1 fw-bolder">₹{book?.price}</p>
-                                <button className="btn btn-primary" onClick={()=>removeItem(book)}>Remove for cart</button>
+                                <button className="btn btn-primary" onClick={()=>removeItem(book)}>Remove from cart</button>
                             </div>
 
                         </div>

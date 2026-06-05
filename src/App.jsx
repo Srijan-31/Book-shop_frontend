@@ -20,7 +20,7 @@ export default function App(){
                     <Route path="/cart" element={<Cart/>}></Route>
                     <Route path="/category/:category_Id" element={<CategoryDetails/>} />
                     <Route path="/products/:productId" element={<ProductDetails/>} ></Route>
-                    <Route path="/wishlist" element={<Wishlist/>}></Route>
+                    <Route path="/wishList" element={<Wishlist/>}></Route>
                 </Routes>
             </Router>
         </BookProvider>

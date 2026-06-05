@@ -3,11 +3,11 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Nav from "../components/Nav";
 import Filter from "../components/Filter";
-import { FcLike } from "react-icons/fc";
+import { FaHeart } from "react-icons/fa";
 
 export default function Product(){
     
-    const {books,categories,cart,wishlist, loading, error, addToCart }=useBookContext()
+    const {books,categories,cart,wishlist, loading, error, addToCart, addToWishList, removeLikedItem }=useBookContext()
     // console.log(books)
     // const[isAdded,setIsAdded]=useState(false)
 
@@ -16,10 +16,11 @@ export default function Product(){
 
     const handleClick=(item)=>{
         addToCart(item)
-        
-
     }
-    //console.log(cart)
+    const handleLike=(book)=>{
+        wishlist.some(item=>item._id===book._id)? removeLikedItem(book): addToWishList(book)
+    }
+    console.log(wishlist)
 
     
 
@@ -39,8 +40,8 @@ export default function Product(){
                             <div className="col-md-4 my-3">
                                 <div className="card h-100">
                                     <div className="position-relative">
-                                        <button className="position-absolute top-0 end-0 m-2 border-0 bg-transparent">
-                                            <FcLike size={30}
+                                        <button className="position-absolute top-0 end-0 m-2 border-0 bg-transparent" onClick={()=>handleLike(book)}>
+                                            <FaHeart size={30}
                                                 color={
                                                     wishlist.some(item=>item._id===book._id)?"red":"grey"
                                                 }
