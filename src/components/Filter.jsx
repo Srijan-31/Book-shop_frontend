@@ -3,9 +3,9 @@ import useBookContext from "../context/bookContext";
 
 export default function Filter(){
 
-    const{categories,books, filterCategory,handleCategoryFilter, handleRatingFilter, filterRating, handlePriceSorting,clearFilter}=useBookContext()
+    const{categories,books, filterCategory,handleCategoryFilter, handleRatingFilter, filterRating,priceSort, handlePriceSorting,clearFilter}=useBookContext()
     // console.log(filterRating)
-
+    console.log(filterCategory)
 
     return(
         <>
@@ -21,6 +21,7 @@ export default function Filter(){
                             type="checkbox" 
                             className="form-check-input" 
                             value={category?.name}  
+                            checked={filterCategory?.includes(category._id)}
                             style={{
                                 transform: "scale(1.5)",
                                 cursor: "pointer"
@@ -36,6 +37,7 @@ export default function Filter(){
                         <input
                             type="radio"
                             value={4}
+                            checked={filterRating===4}
                             className="form-check-input"
                             style={{transform:"scale(1.5)"}}
                             name="rating"
@@ -47,6 +49,7 @@ export default function Filter(){
                         <input
                             type="radio"
                             value={3}
+                            checked={filterRating===3}
                             className="form-check-input"
                             style={{transform:"scale(1.5)"}}
                             name="rating"
@@ -58,6 +61,7 @@ export default function Filter(){
                         <input
                             type="radio"
                             value={2}
+                            checked={filterRating===2}
                             className="form-check-input"
                             style={{transform:"scale(1.5)"}}
                             name="rating"
@@ -69,6 +73,7 @@ export default function Filter(){
                         <input
                             type="radio"
                             value={1}
+                            checked={filterRating===1}
                             className="form-check-input"
                             style={{transform:"scale(1.5)"}}
                             name="rating"
@@ -79,11 +84,11 @@ export default function Filter(){
                     <br/>
                 <p className="fs-3 fw-bold">Sort by</p>
                 <div className="form-check">
-                    <input type="radio" className="form-check-input" name="price" value="LowToHigh" style={{transform:"scale(1.5)"}} onChange={(e)=>handlePriceSorting(e.target.value)} />
+                    <input type="radio" className="form-check-input" name="price" value="LowToHigh" checked={priceSort==="LowToHigh"} style={{transform:"scale(1.5)"}} onChange={(e)=>handlePriceSorting(e.target.value)} />
                     <label className="form-check-label fs-3">Price- Low to High</label>
                 </div>
                 <div className="form-check">
-                    <input type="radio" className="form-check-input" name="price" value="HighToLow" style={{transform:"scale(1.5)"}} onChange={(e)=>handlePriceSorting(e.target.value)} />
+                    <input type="radio" className="form-check-input" name="price" value="HighToLow" checked={priceSort==="HighToLow"} style={{transform:"scale(1.5)"}} onChange={(e)=>handlePriceSorting(e.target.value)} />
                     <label className="form-check-label fs-3">Price- high to low</label>
                 </div>
         </>
