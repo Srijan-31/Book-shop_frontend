@@ -32,6 +32,11 @@ export function BookProvider({children}){
     const[priceSort, setPriceSort]=useState("")
     const[search, setSearch]=useState("")
 
+    const clearFilter=()=>{
+        setFilterCategory([])
+        setRatingFilter(0)
+        setPriceSort("")
+    }
     
     const {
         data: books,
@@ -92,7 +97,7 @@ export function BookProvider({children}){
     }
 
     return(
-    <bookContext.Provider value={{books: filterBooks, categories, loading: booksLoading || categoryLoading, error: booksError||categoryError, addToCart,addToWishList, filterCategory, handleCategoryFilter, handleRatingFilter, handlePriceSorting , handleSearchBar ,search,cart,setCart,wishlist, removeLikedItem, filterRating}}>
+    <bookContext.Provider value={{books: filterBooks, categories, loading: booksLoading || categoryLoading, error: booksError||categoryError, addToCart,addToWishList, filterCategory, handleCategoryFilter, handleRatingFilter, handlePriceSorting , handleSearchBar ,search,cart,setCart,wishlist, removeLikedItem,clearFilter, filterRating}}>
         {children}
     </bookContext.Provider>
     )
