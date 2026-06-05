@@ -8,8 +8,8 @@ export default function Nav(){
     const{books, loading,cart,wishlist, error , handleSearchBar, search}=useBookContext()
 
     return(
-        <nav className="container d-flex justify-content-between align-item-center py-3">
-            <h3 className="fw-bold text-body-secondary">MyShoppingSite</h3>
+        <nav className="container d-flex justify-content-between align-item-center py-3 nav">
+            <NavLink to="/" className="navLink text-decoration-none"><h3 className="fw-bold text-body-secondary navItem">MyShoppingSite</h3></NavLink>
 
             <input type="text" value={search} onChange={(e)=>handleSearchBar(e.target.value)} className="form-control w-50" />
             <NavLink to="/wishList" className="fs-3 text-dark position-relative">
