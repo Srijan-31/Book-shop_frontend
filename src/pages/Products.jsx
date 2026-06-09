@@ -8,8 +8,7 @@ import { FaHeart } from "react-icons/fa";
 export default function Product(){
     
     const {books,categories,cart,wishlist, loading, error, addToCart, addToWishList, removeLikedItem }=useBookContext()
-    // console.log(books)
-    // const[isAdded,setIsAdded]=useState(false)
+    
 
     if(loading) return <p>Loading...</p>
     if(error) return <p>An error occured.</p>
@@ -20,7 +19,7 @@ export default function Product(){
     const handleLike=(book)=>{
         wishlist.some(item=>item._id===book._id)? removeLikedItem(book): addToWishList(book)
     }
-    // console.log(wishlist)
+    
 
     
 
@@ -56,7 +55,7 @@ export default function Product(){
                                             <p className="card-text fs-2 fw-bold">{book?.title}</p>
                                             <p className="card-text text-end fs-4">-{book?.author}</p>
                                             <p className="card-text text-center fs-1 fw-bolder">₹{book?.price}</p>
-                                            {/* {isAdded?<Link to="/cart" className="btn btn-secondary">Go to cart</Link>:<button className="btn btn-primary" onClick={()=>handleClick(book)}>Add to cart</button>} */}
+                                            
                                             {cart.some(item=>item._id===book._id)
                                             ?(
                                                 <Link to="/cart" className="btn btn-secondary">

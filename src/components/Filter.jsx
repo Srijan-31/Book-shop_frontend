@@ -4,13 +4,12 @@ import useBookContext from "../context/bookContext";
 export default function Filter(){
 
     const{categories,books, filterCategory,handleCategoryFilter, handleRatingFilter, filterRating,priceSort, handlePriceSorting, handlePriceFilter,filterPrice, clearFilter}=useBookContext()
-    // console.log(filterRating)
-    console.log(filterPrice)
+    
 
     return(
         <>
         <div className="d-flex justify-content-between align-item-center">
-            <h3>Filters</h3> 
+            <h2 className="fw-bold">Filters</h2> 
             <button className="btn btn-primary w-50" onClick={clearFilter}>Clear</button>
         </div>
         <br/>

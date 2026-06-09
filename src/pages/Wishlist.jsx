@@ -8,7 +8,7 @@ export default function Wishlist(){
     if(loading) return <p>Loading...</p>
     if(error) return <p>An error occured...</p>
 
-    console.log(wishlist)
+    
     return (
         <>
             <Nav/>

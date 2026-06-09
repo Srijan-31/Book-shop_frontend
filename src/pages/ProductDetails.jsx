@@ -11,12 +11,11 @@ export default function ProductDetails(){
 
     const {productId}=useParams() 
     const product=books?.find(book=>book._id==productId)
-    // console.log(product)
+    
     const otherProducts=books?.filter(book=>book?.categoryId===product?.categoryId && book?.title!==product?.title)
-    // console.log(otherProducts)
+    
     const category=categories?.find(category=>category?._id===product?.categoryId)
-    // const[isAdded, setIsAdded]=useState(false)
-    // console.log(category)
+   
     const handleClick=(product)=>{
         addToCart(product)
         

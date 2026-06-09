@@ -4,7 +4,7 @@ import Nav from '../components/Nav'
 export default function Home(){
 
     const {categories, loading, error}=useBookContext()
-    // console.log(categories)
+    
 
     if(loading) return <p>Loading...</p>
     if(error) return <p>An error occured.</p>
