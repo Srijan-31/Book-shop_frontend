@@ -20,7 +20,7 @@ export default function Product(){
     const handleLike=(book)=>{
         wishlist.some(item=>item._id===book._id)? removeLikedItem(book): addToWishList(book)
     }
-    console.log(wishlist)
+    // console.log(wishlist)
 
     
 

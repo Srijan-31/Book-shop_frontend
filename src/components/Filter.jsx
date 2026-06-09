@@ -3,9 +3,9 @@ import useBookContext from "../context/bookContext";
 
 export default function Filter(){
 
-    const{categories,books, filterCategory,handleCategoryFilter, handleRatingFilter, filterRating,priceSort, handlePriceSorting,clearFilter}=useBookContext()
+    const{categories,books, filterCategory,handleCategoryFilter, handleRatingFilter, filterRating,priceSort, handlePriceSorting, handlePriceFilter,filterPrice, clearFilter}=useBookContext()
     // console.log(filterRating)
-    console.log(filterCategory)
+    console.log(filterPrice)
 
     return(
         <>
@@ -13,7 +13,14 @@ export default function Filter(){
             <h3>Filters</h3> 
             <button className="btn btn-primary w-50" onClick={clearFilter}>Clear</button>
         </div>
-                <p className="fs-3 fw-bold">Price</p>
+        <br/>
+                <label className="form-label fs-3 fw-bold" >Price</label><br/>
+                <input type="range" className="form-range" min="300" max="1000" step="100" value={filterPrice} onChange={(e)=>handlePriceFilter(e.target.value)} />
+                <div className="d-flex justify-content-between align-item-center">
+                    <span>300</span>
+                    <span>650</span>
+                    <span>1000</span>
+                </div>
                 <p className="fs-3 fw-bold">Category</p>
                     {categories?.map(category=>
                         <div className="form-check">

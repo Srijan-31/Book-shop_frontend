@@ -27,6 +27,7 @@ export function BookProvider({children}){
         localStorage.setItem("wishlist",JSON.stringify(wishlist))
     },[wishlist])
 
+    const[filterPrice, setFilterPrice]=useState(1000)
     const[filterCategory, setFilterCategory]=useState([])
     const[filterRating,setRatingFilter]=useState(0)
     const[priceSort, setPriceSort]=useState("")
@@ -36,6 +37,7 @@ export function BookProvider({children}){
         setFilterCategory([])
         setRatingFilter(0)
         setPriceSort("")
+        setFilterPrice(1000)
     }
     
     const {
@@ -58,6 +60,9 @@ export function BookProvider({children}){
     const handleRatingFilter=(rating)=>{
         setRatingFilter(rating)
     }
+    const handlePriceFilter=(price)=>{
+        setFilterPrice(Number(price))
+    }
     const handlePriceSorting=(price)=>{
         setPriceSort(price)
     }
@@ -68,10 +73,11 @@ export function BookProvider({children}){
     const filterBooks=books?.filter(book=>{
         const category= filterCategory.length===0 || filterCategory.includes(book?.categoryId)
         const rating= book?.rating>=filterRating
+        const price=book?.price<=filterPrice
         const searchBar=search==="" || 
         book?.title.toLowerCase().includes(search.toLowerCase())
 
-        return category && rating && searchBar
+        return category && rating && price && searchBar
     })?.sort((a,b)=>{
         if(priceSort==="LowToHigh"){
             return a.price-b.price
@@ -82,6 +88,10 @@ export function BookProvider({children}){
         }
         return 0
     })
+
+    /*
+    
+    */
     
 
     const addToCart=(item)=>{
@@ -97,7 +107,7 @@ export function BookProvider({children}){
     }
 
     return(
-    <bookContext.Provider value={{books: filterBooks, categories, loading: booksLoading || categoryLoading, error: booksError||categoryError, addToCart,addToWishList, filterCategory, handleCategoryFilter, handleRatingFilter, handlePriceSorting , handleSearchBar ,search,cart,setCart,wishlist, removeLikedItem,clearFilter, filterRating, priceSort}}>
+    <bookContext.Provider value={{books: filterBooks, categories, loading: booksLoading || categoryLoading, error: booksError||categoryError, addToCart,addToWishList, filterCategory, handleCategoryFilter, handleRatingFilter, handlePriceFilter,filterPrice, handlePriceSorting , handleSearchBar ,search,cart,setCart,wishlist, removeLikedItem,clearFilter, filterRating, priceSort}}>
         {children}
     </bookContext.Provider>
     )
