@@ -94,11 +94,17 @@ export function BookProvider({children}){
     */
     
 
-    const addToCart=(item)=>{
-        setCart((prevCart)=>[...prevCart,item])
+    const addToCart=(book)=>{
+        setCart((prevCart)=>[...prevCart,{...book, quantity:1}])
     }
-    const addToWishList=(item)=>{
-        setWishlist((prevList)=>[...prevList,item])
+    const increaseQuantity=(id)=>{
+        setCart(cart=>cart.map(book=>book._id===id?{...book, quantity: book.quantity+1}:book))
+    }
+    const decreaseQuantity=(id)=>{
+        setCart(cart=>cart.map(book=>book._id===id?{...book, quantity: book.quantity-1}:book))
+    }
+    const addToWishList=(book)=>{
+        setWishlist((prevList)=>[...prevList,book])
     }
     const removeLikedItem=(item)=>{
         setWishlist(wishlist.filter(book=>(
@@ -107,7 +113,7 @@ export function BookProvider({children}){
     }
 
     return(
-    <bookContext.Provider value={{books: filterBooks, categories, loading: booksLoading || categoryLoading, error: booksError||categoryError, addToCart,addToWishList, filterCategory, handleCategoryFilter, handleRatingFilter, handlePriceFilter,filterPrice, handlePriceSorting , handleSearchBar ,search,cart,setCart,wishlist, removeLikedItem,clearFilter, filterRating, priceSort}}>
+    <bookContext.Provider value={{books: filterBooks, categories, loading: booksLoading || categoryLoading, error: booksError||categoryError, addToCart,addToWishList, filterCategory, handleCategoryFilter, handleRatingFilter, handlePriceFilter,filterPrice, handlePriceSorting , handleSearchBar ,search,cart,setCart,wishlist, removeLikedItem,clearFilter, filterRating, priceSort, increaseQuantity, decreaseQuantity}}>
         {children}
     </bookContext.Provider>
     )

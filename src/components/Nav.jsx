@@ -12,7 +12,8 @@ export default function Nav(){
             <NavLink to="/" className="navLink text-decoration-none"><h3 className="fw-bold text-body-secondary navItem">MyShoppingSite</h3></NavLink>
 
             <input type="text" value={search} onChange={(e)=>handleSearchBar(e.target.value)} className="form-control w-50" />
-            <NavLink to="/wishList" className="fs-3 text-dark position-relative">
+            <div className="d-flex justify-content-center gap-5">
+                <NavLink to="/wishList" className="fs-3 text-dark position-relative">
                 <FaRegHeart/>
                 {wishlist.length>0 && 
                     <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{ fontSize: "0.6rem" }}>
@@ -28,6 +29,7 @@ export default function Nav(){
                     </span>
                 }
             </NavLink>
+            </div>
         </nav>
     )
 }

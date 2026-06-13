@@ -3,11 +3,18 @@ import useBookContext from "../context/bookContext";
 import { Link } from "react-router-dom";
 
 export default function Wishlist(){
-    const{books,wishlist, removeLikedItem,loading, error}=useBookContext()
+    const{books, cart, wishlist, addToCart, removeLikedItem,loading,increaseQuantity, error}=useBookContext()
 
     if(loading) return <p>Loading...</p>
     if(error) return <p>An error occured...</p>
-
+    
+    const handleClick=(item)=>{
+        addToCart(item)
+    }
+    const handleButtonClick=(id)=>{
+        increaseQuantity(id)
+        alert("Item quantity increased.")
+    }
     
     return (
         <>
@@ -24,7 +31,15 @@ export default function Wishlist(){
                                     <p className="card-text fs-2 fw-bold">{book?.title}</p>
                                     <p className="card-text text-end fs-4">-{book?.author}</p>
                                     <p className="card-text text-center fs-1 fw-bolder">₹{book?.price}</p>
-                                    <button className="btn btn-primary" onClick={()=>removeLikedItem(book)}>Remove from wishlist</button>
+                                    {cart.some(item=>item._id===book._id)
+                                            ?(
+                                                <button className="btn btn-primary" onClick={()=>handleButtonClick(book._id)}>Add to Cart</button>
+                                            ):(
+                                                <button className="btn btn-primary" onClick={()=>handleClick(book)}>Add to Cart</button>
+                                            )
+                                    }
+                                    
+                                    <button className="btn btn-primary mt-3" onClick={()=>removeLikedItem(book)}>Remove from wishlist</button>
                                 </div>
                             </div>
                         </div>
