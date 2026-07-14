@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import useBookContext from "../context/bookContext";
 import { BsCartPlus } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
+import { CgProfile } from "react-icons/cg";
 
 export default function Nav(){
 
@@ -28,6 +29,9 @@ export default function Nav(){
                         {cart.length}
                     </span>
                 }
+            </NavLink>
+            <NavLink to="/profile" className="fs-3 text-dark position-relative">
+                <CgProfile/>
             </NavLink>
             </div>
         </nav>

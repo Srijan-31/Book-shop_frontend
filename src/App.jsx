@@ -7,6 +7,7 @@ import Cart from './pages/Cart'
 import Wishlist from './pages/Wishlist'
 import CategoryDetails from './pages/CategoryDetails'
 import ProductDetails from './pages/ProductDetails'
+import Profile from './pages/profile'
 import { BookProvider } from './context/bookContext'
 
 export default function App(){
@@ -21,6 +22,7 @@ export default function App(){
                     <Route path="/category/:category_Id" element={<CategoryDetails/>} />
                     <Route path="/products/:productId" element={<ProductDetails/>} ></Route>
                     <Route path="/wishList" element={<Wishlist/>}></Route>
+                    <Route path="/profile" element={<Profile/>}></Route>
                 </Routes>
             </Router>
         </BookProvider>
