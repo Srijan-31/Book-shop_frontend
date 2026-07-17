@@ -32,6 +32,14 @@ export function BookProvider({children}){
     const[filterRating,setRatingFilter]=useState(0)
     const[priceSort, setPriceSort]=useState("")
     const[search, setSearch]=useState("")
+    const[orderHistory, setOrderHistory]=useState(()=>{
+        const savedOrderHistory=localStorage.getItem("orderHistory")
+        return savedOrderHistory?JSON.parse(savedOrderHistory):[]
+    })
+
+    useEffect(()=>{
+        localStorage.setItem("orderHistory",JSON.stringify(orderHistory))
+    },[orderHistory])
 
     const clearFilter=()=>{
         setFilterCategory([])
@@ -68,6 +76,12 @@ export function BookProvider({children}){
     }
     const handleSearchBar=(value)=>{
         setSearch(value)
+    }
+    const handleOrderHistory=(item)=>{
+        setOrderHistory((prevOrder)=>[...prevOrder,item])
+    }
+    const removeOrderHistory=(itemId)=>{
+        setOrderHistory(orderHistory?.filter(item=>item._id!==itemId))
     }
     
     const filterBooks=books?.filter(book=>{
@@ -113,7 +127,7 @@ export function BookProvider({children}){
     }
 
     return(
-    <bookContext.Provider value={{books: filterBooks, categories, loading: booksLoading || categoryLoading, error: booksError||categoryError, addToCart,addToWishList, filterCategory, handleCategoryFilter, handleRatingFilter, handlePriceFilter,filterPrice, handlePriceSorting , handleSearchBar ,search,cart,setCart,wishlist, removeLikedItem,clearFilter, filterRating, priceSort, increaseQuantity, decreaseQuantity}}>
+    <bookContext.Provider value={{books: filterBooks, categories, loading: booksLoading || categoryLoading, error: booksError||categoryError, addToCart,addToWishList, filterCategory, handleCategoryFilter, handleRatingFilter, handlePriceFilter,filterPrice, handlePriceSorting , handleSearchBar ,search,cart,setCart,wishlist, removeLikedItem,clearFilter, filterRating, priceSort, increaseQuantity, decreaseQuantity, orderHistory, handleOrderHistory, removeOrderHistory}}>
         {children}
     </bookContext.Provider>
     )

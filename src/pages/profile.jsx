@@ -1,5 +1,6 @@
 import Nav from "../components/Nav";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Profile(){
   const [address, setAddress] = useState("");
@@ -22,7 +23,7 @@ export default function Profile(){
             <main className="container p-5">
                 <div className="row">
                     <div className="col-md-4">
-                        <img src="C:\Users\dassr\OneDrive\Documents\me\resume1.jpg" alt="profile-pic" className="profile-img"/>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRM4AYB4vrbGWV-Rp2xSgGZSq2OrSBgNt0TSlcUoXFUnhTf-FN3tGsC30-&s=10" alt="profile-pic" className="profile-img img-fluid rounded-circle"/>
                     </div>
                     <div className="col-md-8 fs-3">
                         <p className="fw-bold">Srijan Das</p>
@@ -41,6 +42,9 @@ export default function Profile(){
                         ))}
                         <input type="text" className="form-control" value={address} onChange={(e)=>setAddress(e.target.value)} />
                         <button className="btn btn-primary" onClick={addAddress}>Add new Address</button>
+                        <br/><br/>
+                        <Link className="btn btn-outline-primary" to="/order">Order History</Link>
+                        
                     </div>
                 </div>
             </main>

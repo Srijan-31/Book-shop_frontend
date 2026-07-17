@@ -8,6 +8,7 @@ import Wishlist from './pages/Wishlist'
 import CategoryDetails from './pages/CategoryDetails'
 import ProductDetails from './pages/ProductDetails'
 import Profile from './pages/profile'
+import OrderHistory from './pages/OrderHistory'
 import { BookProvider } from './context/bookContext'
 
 export default function App(){
@@ -23,6 +24,7 @@ export default function App(){
                     <Route path="/products/:productId" element={<ProductDetails/>} ></Route>
                     <Route path="/wishList" element={<Wishlist/>}></Route>
                     <Route path="/profile" element={<Profile/>}></Route>
+                    <Route path="/order" element={<OrderHistory/>} ></Route>
                 </Routes>
             </Router>
         </BookProvider>
