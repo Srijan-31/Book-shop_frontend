@@ -1,5 +1,6 @@
 import useBookContext from "../context/bookContext";
 import { useState } from "react";
+import { useEffect } from "react";
 import {Link} from 'react-router-dom'
 import Filter from "../components/Filter";
 import { useParams } from "react-router-dom";
@@ -7,7 +8,7 @@ import Nav from "../components/Nav";
 import { FaHeart } from "react-icons/fa";
 
 export default function CategoryDetails(){
-    const {books,cart,wishlist,addToWishList,removeLikedItem, loading, error, addToCart}=useBookContext()
+    const {books,cart,wishlist,addToWishList,removeLikedItem,handleCategoryFilter, loading, error, addToCart}=useBookContext()
     
 
     if(loading) return <p>Loading...</p>
@@ -22,8 +23,10 @@ export default function CategoryDetails(){
 
     const {category_Id}=useParams()
     
-
-    const filteredCategories=books?.filter(book=>book?.categoryId==category_Id)
+    useEffect(() => {
+    handleCategoryFilter(category_Id);
+    }, [category_Id]);
+    
     
 
     return(
@@ -36,10 +39,10 @@ export default function CategoryDetails(){
                         
                     </div>
                     <div className="col-md-9 bg-light p-4">
-                        <h4>Showing All Products (showing {filteredCategories?.length} products)</h4>
+                        <h4>Showing All Products (showing {books?.length} products)</h4>
                         <div className="row">
-                            {filteredCategories?.map(book=>(
-                                <div className="col-md-4 my-3">
+                            {books?.map(book=>(
+                                <div className="col-md-4 my-3" key={book._id}>
                                     <div className="card h-100">
                                         <div className="position-relative">
                                             <button className="position-absolute top-0 end-0 m-2 border-0 bg-transparent" onClick={()=>handleLike(book)}>

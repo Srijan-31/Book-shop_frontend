@@ -126,6 +126,8 @@ export function BookProvider({children}){
         )))
     }
 
+    
+
     return(
     <bookContext.Provider value={{books: filterBooks, categories, loading: booksLoading || categoryLoading, error: booksError||categoryError, addToCart,addToWishList, filterCategory, handleCategoryFilter, handleRatingFilter, handlePriceFilter,filterPrice, handlePriceSorting , handleSearchBar ,search,cart,setCart,wishlist, removeLikedItem,clearFilter, filterRating, priceSort, increaseQuantity, decreaseQuantity, orderHistory, handleOrderHistory, removeOrderHistory}}>
         {children}
